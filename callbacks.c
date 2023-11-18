@@ -170,12 +170,33 @@ on_yasmine_update_button_clicked       (GtkButton       *button,
 
 }
 
-
+// supprimer 
 void
-on_yasmine_delete_button_clicked       (GtkButton       *button,
-                                        gpointer         user_data)
+on_yasmine_delete_button_clicked   (GtkWidget     *objet, gpointer         user_data)
 {
+don d;
+GtkWidget* yasmine_delete_entryId;
+yasmine_delete_entryId = lookup_widget(objet, "yasmine_delete_entryId");
+   
+ gchar *id_str = gtk_entry_get_text(GTK_ENTRY(yasmine_delete_entryId));
+    int id_to_delete = atoi(id_str);
 
+    // Call your function to delete the entry with the specified ID
+supprimer_don( id_to_delete);
+
+
+    // Refresh the treeview after deletion
+    GtkWidget *yasmine_treeview = lookup_widget(objet, "yasmine_treeview");
+    afficher_don(yasmine_treeview);
+
+// go to confirm supp 
+GtkWidget *yasmine_delete_confirm_window;
+GtkWidget *yasmine_delete_window;
+
+yasmine_delete_window = lookup_widget(objet, "yasmine_delete_window");
+gtk_widget_hide(yasmine_delete_window);
+yasmine_delete_confirm_window= create_yasmine_delete_confirm_window();
+gtk_widget_show(yasmine_delete_confirm_window);
 }
 
 
@@ -196,49 +217,7 @@ on_yasmine_update_confirm_checkbtn_oui_clicked
 
 }
 
-// hneee
 
-void
-on_yasmine_treeview_row_activated (GtkTreeView *treeview,GtkTreePath  *path, GtkTreeViewColumn *column, gpointer user_data)
-{
-/*
-GtkTreeIter iter;
-GtkWidget* yasmine_treeview;
-gchar* type_de_sang;
-
-don d;
-
-GtkTreeModel *model = gtk_tree_view_get_model(treeview);
-if (gtk_tree_model_get_iter(model, &iter, path)) {
-
-   gtk_tree_model_get(GtkTreeModel*(model), &iter,
-                      0, &d.id_donneur,
-                      1, &d.id_du_don,
-                      2, &type_de_sang,
-                      3, &d.id_ETS,
-                      4, &d.quantite_sang,
-                      5, &d.date.jour,
-                      6, &d.date.mois,
-                      7, &d.date.annee,
-                      -1);
-
-  
-   d.id_donneur = atoi(d.id_donneur);
-   d.id_du_don = atoi(d.id_du_don);
-   strcpy(d.type_de_sang, type_de_sang);
-   d.id_ETS = atoi(d.id_ETS);
-   d.quantite_sang = atoi(d.quantite_sang);
-   d.date.jour = atoi(d.date.jour);
-   d.date.mois = atoi(d.date.mois);
-   d.date.annee = atoi(d.date.annee);
-
-   afficher_don(yasmine_treeview);
-}
-
-
-
-*/
-}
 
 
 void
@@ -247,19 +226,17 @@ on_yasmine_home_retour_button_clicked  (GtkButton       *button,
 {
 
 }
-
-//
-void on_yasmine_ajout_button_clicked        (GtkWidget*   objet, gpointer   user_data)
+void on_yasmine_treeview_row_activated      (GtkTreeView     *treeview,
+   GtkTreePath     *path,
+   GtkTreeViewColumn *column,
+   gpointer         user_data)
 {
-    int id_donneur;
-    int id_du_don;
-    char type_de_sang[100];
-    int id_ETS;
-    int quantite_sang;
-    date_du_don date;
+}
+//
+void on_yasmine_ajout_button_clicked     (GtkWidget*   objet, gpointer   user_data)
+{
 
-don d;
-GtkWidget *yasmine_ajout_entryIdDonneur;
+GtkWidget* yasmine_ajout_entryIdDonneur;
 GtkWidget* yasmine_ajout_entryId;
 GtkWidget* yasmine_ajout_comboBox_typeSang;
 GtkWidget* yasmine_ajout_comboBox_Ets;
@@ -268,7 +245,7 @@ GtkWidget* yasmine_ajout_jour_spinBtn;
 GtkWidget* yasmine_ajout_mois_spinBtn;
 GtkWidget* yasmine_ajout_annee_spinBtn;
 
-
+don d;
 yasmine_ajout_entryIdDonneur = lookup_widget(objet, "yasmine_ajout_entryIdDonneur");
 yasmine_ajout_entryId= lookup_widget(objet,"yasmine_ajout_entryId");
 yasmine_ajout_comboBox_typeSang= lookup_widget(objet,"yasmine_ajout_comboBox_typeSang");
@@ -280,33 +257,58 @@ yasmine_ajout_annee_spinBtn= lookup_widget(objet,"yasmine_ajout_annee_spinBtn");
 
 
 
-id_donneur = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_entryIdDonneur)));
-id_du_don = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_entryId)) ) ;
+d.id_donneur = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_entryIdDonneur)));
+d.id_du_don = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_entryId)) ) ;
+//combobox
+strcpy(d.type_de_sang ,gtk_combo_box_get_active_text(GTK_COMBO_BOX(yasmine_ajout_comboBox_typeSang)));
+d.id_ETS = atoi(gtk_combo_box_get_active_text(GTK_COMBO_BOX(yasmine_ajout_comboBox_Ets)) ) ;
+//spin btn
+d.quantite_sang = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(yasmine_ajout_entry_spinbutton_qte)) ;
+d.date.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(yasmine_ajout_jour_spinBtn))  ;
+d.date.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(yasmine_ajout_mois_spinBtn)) ;
+d.date.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(yasmine_ajout_annee_spinBtn));
 
-strcpy(type_de_sang ,gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_comboBox_typeSang)));
-id_ETS = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_comboBox_Ets)) ) ;
-quantite_sang = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_entry_spinbutton_qte)) ) ;
-date.jour = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_jour_spinBtn)) ) ;
-date.mois = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_mois_spinBtn)) ) ;
-date.annee = atoi(gtk_entry_get_text(GTK_ENTRY(yasmine_ajout_annee_spinBtn)) ) ;
 
 ajouter(d);
-}
 
 
-void on_yasmine_ajout_button_afficher_clicked  (GtkWidget*   objet, gpointer user_data)
-{/*
-    GtkWidget *yasmine_ajout_window;
-    GtkWidget *yasmine_home_window;
-    GtkTreeView *yastreeview;
+GtkWidget *yasmine_home_window;
+GtkWidget *yasmine_ajout_window;
+ GtkTreeView *yastreeview;
 
-    yasmine_ajout_window = lookup_widget(objet, "yasmine_ajout_window");
-    gtk_widget_destroy(yasmine_ajout_window);
+yasmine_ajout_window = lookup_widget(objet, "yasmine_ajout_window");
+gtk_widget_hide(yasmine_ajout_window);
 
-    yasmine_home_window = create_yasmine_home_window();
-    gtk_widget_show(yasmine_home_window);
+yasmine_home_window= create_yasmine_home_window();
+gtk_widget_show(yasmine_home_window);
 
-    yastreeview = lookup_widget(objet, "yasmine_treeview");
+   yastreeview = lookup_widget(objet, "yasmine_treeview");
    afficher_don(yastreeview);
-*/
+
 }
+
+//actualiser
+void on_yasmine_home_actualiser_button_clicked (GtkWidget     *objet, gpointer   user_data)
+{
+  GtkTreeView *yastreeview = GTK_TREE_VIEW(lookup_widget(objet, "yasmine_treeview"));
+
+    // Clear the existing data in the tree view
+    vider(yastreeview);
+
+    // Refresh the tree view with updated data
+    afficher_don(yastreeview);
+}
+
+
+void
+on_yasmine_delete_retourBtn_clicked    (GtkWidget     *objet, gpointer         user_data)
+{
+GtkWidget *yasmine_home_window;
+GtkWidget *yasmine_delete_window;
+
+yasmine_delete_window = lookup_widget(objet, "yasmine_delete_window");
+gtk_widget_hide(yasmine_delete_window);
+yasmine_home_window= create_yasmine_home_window();
+gtk_widget_show(yasmine_home_window);
+}
+

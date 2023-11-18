@@ -9,8 +9,7 @@ void
 on_yasmine_home_navbar_viewAll_clicked (GtkButton       *button,
                                         gpointer         user_data);
 
-void
-on_yasmine_home_navbar_qtdispo_clicked (GtkButton       *button,
+void on_yasmine_home_navbar_qtdispo_clicked (GtkButton       *button,
                                         gpointer         user_data);
 
 void
@@ -39,9 +38,7 @@ void
 on_yasmine_update_button_clicked       (GtkButton       *button,
                                         gpointer         user_data);
 
-void
-on_yasmine_delete_button_clicked       (GtkButton       *button,
-                                        gpointer         user_data);
+void on_yasmine_delete_button_clicked   (GtkWidget     *objet, gpointer         user_data);
 
 void
 on_yasmine_delete_checkbutton_non_clicked
@@ -68,3 +65,7 @@ on_yasmine_ajout_button_clicked        (GtkWidget*   objet, gpointer   user_data
 
 void
 on_yasmine_ajout_button_afficher_clicked  (GtkWidget*   objet, gpointer user_data);
+
+void on_yasmine_home_actualiser_button_clicked (GtkWidget     *objet, gpointer   user_data);
+
+void on_yasmine_delete_retourBtn_clicked    (GtkWidget     *objet, gpointer         user_data);

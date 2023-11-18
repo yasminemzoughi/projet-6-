@@ -304,7 +304,6 @@ create_yasmine_home_window (void)
 {
   GtkWidget *yasmine_home_window;
   GtkWidget *yasmine_home_fixed4;
-  GtkWidget *yasmine_home_container_comboBox;
   GtkWidget *yasmine_home_filter_comboboxentry;
   GtkWidget *yasmine_home_filter_label;
   GtkWidget *yasmine_home_container_navbar;
@@ -339,12 +338,11 @@ create_yasmine_home_window (void)
   GtkWidget *yasmine_home_container3;
   GtkWidget *yasmine_home_container_comboBox;
   GtkWidget *yasmine_home_image_btn_supprimer;
-  GtkWidget *yasmine_home_image_btn_supprimer;
-  GtkWidget *yasmine_home_retour_button;
+  GtkWidget *yasmine_home_actualiser_button;
   GtkWidget *alignment13;
   GtkWidget *hbox13;
   GtkWidget *image13;
-  GtkWidget *yasmine_home_retour_button;
+  GtkWidget *label66;
 
   yasmine_home_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (yasmine_home_window), _("window4"));
@@ -519,27 +517,26 @@ create_yasmine_home_window (void)
   gtk_widget_show (yasmine_home_image_btn_supprimer);
   gtk_box_pack_start (GTK_BOX (yasmine_home_container_comboBox), yasmine_home_image_btn_supprimer, FALSE, FALSE, 0);
 
-  yasmine_home_retour_button = gtk_button_new ();
-  gtk_widget_show (yasmine_home_retour_button);
-  gtk_fixed_put (GTK_FIXED (yasmine_home_fixed4), yasmine_home_retour_button, 72, 432);
-  gtk_widget_set_size_request (yasmine_home_retour_button, 136, 37);
+  yasmine_home_actualiser_button = gtk_button_new ();
+  gtk_widget_show (yasmine_home_actualiser_button);
+  gtk_fixed_put (GTK_FIXED (yasmine_home_fixed4), yasmine_home_actualiser_button, 592, 416);
+  gtk_widget_set_size_request (yasmine_home_actualiser_button, 136, 37);
 
   alignment13 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment13);
-  gtk_container_add (GTK_CONTAINER (yasmine_home_retour_button), alignment13);
+  gtk_container_add (GTK_CONTAINER (yasmine_home_actualiser_button), alignment13);
 
   hbox13 = gtk_hbox_new (FALSE, 2);
   gtk_widget_show (hbox13);
   gtk_container_add (GTK_CONTAINER (alignment13), hbox13);
 
-  image13 = gtk_image_new_from_stock ("gtk-undo", GTK_ICON_SIZE_BUTTON);
+  image13 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image13);
   gtk_box_pack_start (GTK_BOX (hbox13), image13, FALSE, FALSE, 0);
 
-  yasmine_home_retour_button = gtk_label_new_with_mnemonic (_("Retour"));
-  gtk_widget_show (yasmine_home_retour_button);
-  gtk_box_pack_start (GTK_BOX (hbox13), yasmine_home_retour_button, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (yasmine_home_retour_button), GTK_JUSTIFY_CENTER);
+  label66 = gtk_label_new_with_mnemonic (_("Actualiser"));
+  gtk_widget_show (label66);
+  gtk_box_pack_start (GTK_BOX (hbox13), label66, FALSE, FALSE, 0);
 
   g_signal_connect ((gpointer) yasmine_home_navbar_viewAll, "clicked",
                     G_CALLBACK (on_yasmine_home_navbar_viewAll_clicked),
@@ -562,8 +559,8 @@ create_yasmine_home_window (void)
   g_signal_connect ((gpointer) yasmine_home_supprimer_button, "clicked",
                     G_CALLBACK (on_yasmine_home_supprimer_button_clicked),
                     NULL);
-  g_signal_connect ((gpointer) yasmine_home_retour_button, "clicked",
-                    G_CALLBACK (on_yasmine_home_retour_button_clicked),
+  g_signal_connect ((gpointer) yasmine_home_actualiser_button, "clicked",
+                    G_CALLBACK (on_yasmine_home_actualiser_button_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -605,11 +602,11 @@ create_yasmine_home_window (void)
   GLADE_HOOKUP_OBJECT (yasmine_home_window, yasmine_home_container_comboBox, "yasmine_home_container_comboBox");
   GLADE_HOOKUP_OBJECT (yasmine_home_window, yasmine_home_image_btn_supprimer, "yasmine_home_image_btn_supprimer");
   GLADE_HOOKUP_OBJECT (yasmine_home_window, yasmine_home_image_btn_supprimer, "yasmine_home_image_btn_supprimer");
-  GLADE_HOOKUP_OBJECT (yasmine_home_window, yasmine_home_retour_button, "yasmine_home_retour_button");
+  GLADE_HOOKUP_OBJECT (yasmine_home_window, yasmine_home_actualiser_button, "yasmine_home_actualiser_button");
   GLADE_HOOKUP_OBJECT (yasmine_home_window, alignment13, "alignment13");
   GLADE_HOOKUP_OBJECT (yasmine_home_window, hbox13, "hbox13");
   GLADE_HOOKUP_OBJECT (yasmine_home_window, image13, "image13");
-  GLADE_HOOKUP_OBJECT (yasmine_home_window, yasmine_home_retour_button, "yasmine_home_retour_button");
+  GLADE_HOOKUP_OBJECT (yasmine_home_window, label66, "label66");
 
   return yasmine_home_window;
 }
@@ -623,9 +620,9 @@ create_yasmine_ajout_window (void)
   GtkWidget *yasmine_ajout_container1;
   GtkWidget *yasmine_ajout_comboBox_typeSang;
   GtkWidget *yasmine_ajout_container3;
-  GtkWidget *yasmine_ajout_comboBox_typeSang;
-  GtkObject *yasmine_ajout_entry_spinbutton_adj;
-  GtkWidget *yasmine_ajout_entry_spinbutton;
+  GtkWidget *yasmine_ajout_comboBox_Ets;
+  GtkObject *yasmine_ajout_entry_spinbutton_qte_adj;
+  GtkWidget *yasmine_ajout_entry_spinbutton_qte;
   GtkObject *yasmine_ajout_jour_spinBtn_adj;
   GtkWidget *yasmine_ajout_jour_spinBtn;
   GtkObject *yasmine_ajout_mois_spinBtn_adj;
@@ -642,17 +639,12 @@ create_yasmine_ajout_window (void)
   GtkWidget *yasmine_ajout_mois_label;
   GtkWidget *yasmine_ajout_annee_label;
   GtkWidget *yasmine_ajout_titel;
+  GtkWidget *yasmine_ajout_entryIdDonneur;
   GtkWidget *yasmine_ajout_button;
   GtkWidget *alignment9;
   GtkWidget *hbox9;
   GtkWidget *image9;
   GtkWidget *label52;
-  GtkWidget *yasmine_ajout_button_afficher;
-  GtkWidget *alignment12;
-  GtkWidget *hbox12;
-  GtkWidget *image12;
-  GtkWidget *label70;
-  GtkWidget *yasmine_ajout_entryIdDonneur;
 
   yasmine_ajout_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (yasmine_ajout_window, 720, 770);
@@ -679,7 +671,7 @@ create_yasmine_ajout_window (void)
   gtk_table_attach (GTK_TABLE (yasmine_ajout_container1), yasmine_ajout_comboBox_typeSang, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
-  gtk_widget_set_size_request (yasmine_ajout_comboBox_typeSang, 193, 0);
+  gtk_widget_set_size_request (yasmine_ajout_comboBox_typeSang, 217, 32);
   gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_ajout_comboBox_typeSang), _("A+"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_ajout_comboBox_typeSang), _("B+"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_ajout_comboBox_typeSang), _("A-"));
@@ -692,29 +684,30 @@ create_yasmine_ajout_window (void)
   gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_container3, 192, 324);
   gtk_widget_set_size_request (yasmine_ajout_container3, 16, 16);
 
-  yasmine_ajout_comboBox_typeSang = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (yasmine_ajout_comboBox_typeSang);
-  gtk_table_attach (GTK_TABLE (yasmine_ajout_container3), yasmine_ajout_comboBox_typeSang, 0, 1, 0, 1,
+  yasmine_ajout_comboBox_Ets = gtk_combo_box_entry_new_text ();
+  gtk_widget_show (yasmine_ajout_comboBox_Ets);
+  gtk_table_attach (GTK_TABLE (yasmine_ajout_container3), yasmine_ajout_comboBox_Ets, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
-  gtk_widget_set_size_request (yasmine_ajout_comboBox_typeSang, 205, 29);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_ajout_comboBox_typeSang), _("Etablissement A "));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_ajout_comboBox_typeSang), _("Etablissement B "));
+  gtk_widget_set_size_request (yasmine_ajout_comboBox_Ets, 205, 29);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_ajout_comboBox_Ets), _("1234"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_ajout_comboBox_Ets), _("1235"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_ajout_comboBox_Ets), _("1236"));
 
-  yasmine_ajout_entry_spinbutton_adj = gtk_adjustment_new (151, 0, 500, 1, 10, 10);
-  yasmine_ajout_entry_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (yasmine_ajout_entry_spinbutton_adj), 1, 0);
-  gtk_widget_show (yasmine_ajout_entry_spinbutton);
-  gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_entry_spinbutton, 232, 416);
-  gtk_widget_set_size_request (yasmine_ajout_entry_spinbutton, 88, 27);
+  yasmine_ajout_entry_spinbutton_qte_adj = gtk_adjustment_new (100, 0, 500, 1, 10, 10);
+  yasmine_ajout_entry_spinbutton_qte = gtk_spin_button_new (GTK_ADJUSTMENT (yasmine_ajout_entry_spinbutton_qte_adj), 1, 0);
+  gtk_widget_show (yasmine_ajout_entry_spinbutton_qte);
+  gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_entry_spinbutton_qte, 232, 416);
+  gtk_widget_set_size_request (yasmine_ajout_entry_spinbutton_qte, 88, 27);
 
-  yasmine_ajout_jour_spinBtn_adj = gtk_adjustment_new (31, 1, 31, 1, 10, 10);
+  yasmine_ajout_jour_spinBtn_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
   yasmine_ajout_jour_spinBtn = gtk_spin_button_new (GTK_ADJUSTMENT (yasmine_ajout_jour_spinBtn_adj), 1, 0);
   gtk_widget_show (yasmine_ajout_jour_spinBtn);
   gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_jour_spinBtn, 168, 504);
   gtk_widget_set_size_request (yasmine_ajout_jour_spinBtn, 64, 27);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (yasmine_ajout_jour_spinBtn), TRUE);
 
-  yasmine_ajout_mois_spinBtn_adj = gtk_adjustment_new (12, 1, 12, 1, 10, 10);
+  yasmine_ajout_mois_spinBtn_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
   yasmine_ajout_mois_spinBtn = gtk_spin_button_new (GTK_ADJUSTMENT (yasmine_ajout_mois_spinBtn_adj), 1, 0);
   gtk_widget_show (yasmine_ajout_mois_spinBtn);
   gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_mois_spinBtn, 264, 504);
@@ -776,9 +769,16 @@ create_yasmine_ajout_window (void)
   gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_titel, 264, 40);
   gtk_widget_set_size_request (yasmine_ajout_titel, 291, 43);
 
+  yasmine_ajout_entryIdDonneur = gtk_entry_new ();
+  gtk_widget_show (yasmine_ajout_entryIdDonneur);
+  gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_entryIdDonneur, 200, 120);
+  gtk_widget_set_size_request (yasmine_ajout_entryIdDonneur, 184, 27);
+  gtk_widget_set_sensitive (yasmine_ajout_entryIdDonneur, FALSE);
+  gtk_entry_set_invisible_char (GTK_ENTRY (yasmine_ajout_entryIdDonneur), 8226);
+
   yasmine_ajout_button = gtk_button_new ();
   gtk_widget_show (yasmine_ajout_button);
-  gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_button, 112, 600);
+  gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_button, 216, 600);
   gtk_widget_set_size_request (yasmine_ajout_button, 240, 45);
 
   alignment9 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -797,39 +797,8 @@ create_yasmine_ajout_window (void)
   gtk_widget_show (label52);
   gtk_box_pack_start (GTK_BOX (hbox9), label52, FALSE, FALSE, 0);
 
-  yasmine_ajout_button_afficher = gtk_button_new ();
-  gtk_widget_show (yasmine_ajout_button_afficher);
-  gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_button_afficher, 412, 600);
-  gtk_widget_set_size_request (yasmine_ajout_button_afficher, 240, 45);
-
-  alignment12 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment12);
-  gtk_container_add (GTK_CONTAINER (yasmine_ajout_button_afficher), alignment12);
-
-  hbox12 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox12);
-  gtk_container_add (GTK_CONTAINER (alignment12), hbox12);
-
-  image12 = gtk_image_new_from_stock ("gtk-goto-first", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image12);
-  gtk_box_pack_start (GTK_BOX (hbox12), image12, FALSE, FALSE, 0);
-
-  label70 = gtk_label_new_with_mnemonic (_("Afficher"));
-  gtk_widget_show (label70);
-  gtk_box_pack_start (GTK_BOX (hbox12), label70, FALSE, FALSE, 0);
-
-  yasmine_ajout_entryIdDonneur = gtk_entry_new ();
-  gtk_widget_show (yasmine_ajout_entryIdDonneur);
-  gtk_fixed_put (GTK_FIXED (yasmine_ajout_fixed1), yasmine_ajout_entryIdDonneur, 200, 120);
-  gtk_widget_set_size_request (yasmine_ajout_entryIdDonneur, 184, 27);
-  gtk_widget_set_sensitive (yasmine_ajout_entryIdDonneur, FALSE);
-  gtk_entry_set_invisible_char (GTK_ENTRY (yasmine_ajout_entryIdDonneur), 8226);
-
   g_signal_connect ((gpointer) yasmine_ajout_button, "clicked",
                     G_CALLBACK (on_yasmine_ajout_button_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) yasmine_ajout_button_afficher, "clicked",
-                    G_CALLBACK (on_yasmine_ajout_button_afficher_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -839,8 +808,8 @@ create_yasmine_ajout_window (void)
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_container1, "yasmine_ajout_container1");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_comboBox_typeSang, "yasmine_ajout_comboBox_typeSang");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_container3, "yasmine_ajout_container3");
-  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_comboBox_typeSang, "yasmine_ajout_comboBox_typeSang");
-  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_entry_spinbutton, "yasmine_ajout_entry_spinbutton");
+  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_comboBox_Ets, "yasmine_ajout_comboBox_Ets");
+  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_entry_spinbutton_qte, "yasmine_ajout_entry_spinbutton_qte");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_jour_spinBtn, "yasmine_ajout_jour_spinBtn");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_mois_spinBtn, "yasmine_ajout_mois_spinBtn");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_annee_spinBtn, "yasmine_ajout_annee_spinBtn");
@@ -854,17 +823,12 @@ create_yasmine_ajout_window (void)
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_mois_label, "yasmine_ajout_mois_label");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_annee_label, "yasmine_ajout_annee_label");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_titel, "yasmine_ajout_titel");
+  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_entryIdDonneur, "yasmine_ajout_entryIdDonneur");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_button, "yasmine_ajout_button");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, alignment9, "alignment9");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, hbox9, "hbox9");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, image9, "image9");
   GLADE_HOOKUP_OBJECT (yasmine_ajout_window, label52, "label52");
-  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_button_afficher, "yasmine_ajout_button_afficher");
-  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, alignment12, "alignment12");
-  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, hbox12, "hbox12");
-  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, image12, "image12");
-  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, label70, "label70");
-  GLADE_HOOKUP_OBJECT (yasmine_ajout_window, yasmine_ajout_entryIdDonneur, "yasmine_ajout_entryIdDonneur");
 
   return yasmine_ajout_window;
 }
@@ -933,23 +897,30 @@ create_yasmine_update_window (void)
   GtkWidget *yasmine_update_entryNom;
   GtkWidget *yasmine_update_container1;
   GtkWidget *yasmine_update_comboBox_typeSang;
-  GtkWidget *yasmine_update_container2;
-  GtkWidget *yasmine_update_calendar1;
   GtkWidget *yasmine_update_label_id;
   GtkWidget *yasmine_update_label_Nom;
   GtkWidget *yasmine_update_label_typeSang;
-  GtkWidget *yasmine_update_label_date;
-  GtkWidget *yasmine_update_label_date;
   GtkWidget *yasmine_update_container3;
   GtkWidget *yasmine_update_comboBox_ets;
-  GtkWidget *yasmine_update_label_qt;
   GtkObject *yasmine_update_entry_spinbutton_adj;
   GtkWidget *yasmine_update_entry_spinbutton;
+  GtkWidget *yasmine_update_label_ETS;
   GtkWidget *yasmine_update_button;
   GtkWidget *alignment10;
   GtkWidget *hbox10;
   GtkWidget *image10;
   GtkWidget *label61;
+  GtkObject *yasmine_update_jour_spinBtn_adj;
+  GtkWidget *yasmine_update_jour_spinBtn;
+  GtkObject *yasmine_update_mois_spinBtn_adj;
+  GtkWidget *yasmine_update_mois_spinBtn;
+  GtkObject *yasmine_update_annee_spinBtn_adj;
+  GtkWidget *yasmine_update_annee_spinBtn;
+  GtkWidget *yasmine_update_label_qt;
+  GtkWidget *yasmine_update_label_date;
+  GtkWidget *yasmine_update_label_jour;
+  GtkWidget *yasmine_update_label_mois;
+  GtkWidget *yasmine_update_label_annee;
 
   yasmine_update_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (yasmine_update_window), _("window3"));
@@ -957,7 +928,7 @@ create_yasmine_update_window (void)
   yasmine_update_fixed1 = gtk_fixed_new ();
   gtk_widget_show (yasmine_update_fixed1);
   gtk_container_add (GTK_CONTAINER (yasmine_update_window), yasmine_update_fixed1);
-  gtk_widget_set_size_request (yasmine_update_fixed1, 577, 755);
+  gtk_widget_set_size_request (yasmine_update_fixed1, 577, 757);
 
   yasmine_update_titel = gtk_label_new (_("Modifier un don"));
   gtk_widget_show (yasmine_update_titel);
@@ -966,7 +937,7 @@ create_yasmine_update_window (void)
 
   yasmine_update_entryId = gtk_entry_new ();
   gtk_widget_show (yasmine_update_entryId);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_entryId, 216, 104);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_entryId, 208, 112);
   gtk_widget_set_size_request (yasmine_update_entryId, 160, 27);
   gtk_entry_set_invisible_char (GTK_ENTRY (yasmine_update_entryId), 8226);
 
@@ -993,21 +964,6 @@ create_yasmine_update_window (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_update_comboBox_typeSang), _("O+"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_update_comboBox_typeSang), _("O-"));
 
-  yasmine_update_container2 = gtk_table_new (1, 1, FALSE);
-  gtk_widget_show (yasmine_update_container2);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_container2, 211, 298);
-  gtk_widget_set_size_request (yasmine_update_container2, 16, 16);
-
-  yasmine_update_calendar1 = gtk_calendar_new ();
-  gtk_widget_show (yasmine_update_calendar1);
-  gtk_table_attach (GTK_TABLE (yasmine_update_container2), yasmine_update_calendar1, 0, 1, 0, 1,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
-  gtk_widget_set_size_request (yasmine_update_calendar1, 164, 188);
-  gtk_calendar_display_options (GTK_CALENDAR (yasmine_update_calendar1),
-                                GTK_CALENDAR_SHOW_HEADING
-                                | GTK_CALENDAR_SHOW_DAY_NAMES);
-
   yasmine_update_label_id = gtk_label_new (_("Id du don \303\240 modifier :"));
   gtk_widget_show (yasmine_update_label_id);
   gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_id, 32, 96);
@@ -1023,43 +979,35 @@ create_yasmine_update_window (void)
   gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_typeSang, 64, 224);
   gtk_widget_set_size_request (yasmine_update_label_typeSang, 112, 25);
 
-  yasmine_update_label_date = gtk_label_new (_("date du don :"));
-  gtk_widget_show (yasmine_update_label_date);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_date, 72, 296);
-  gtk_widget_set_size_request (yasmine_update_label_date, 104, 25);
-
-  yasmine_update_label_date = gtk_label_new (_("Etablissement :"));
-  gtk_widget_show (yasmine_update_label_date);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_date, 64, 520);
-  gtk_widget_set_size_request (yasmine_update_label_date, 120, 25);
-
   yasmine_update_container3 = gtk_table_new (1, 1, FALSE);
   gtk_widget_show (yasmine_update_container3);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_container3, 204, 523);
-  gtk_widget_set_size_request (yasmine_update_container3, 16, 16);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_container3, 212, 296);
+  gtk_widget_set_size_request (yasmine_update_container3, 14, 11);
 
   yasmine_update_comboBox_ets = gtk_combo_box_entry_new_text ();
   gtk_widget_show (yasmine_update_comboBox_ets);
   gtk_table_attach (GTK_TABLE (yasmine_update_container3), yasmine_update_comboBox_ets, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_update_comboBox_ets), _("Etablissement A"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_update_comboBox_ets), _("Etablissement B"));
+  gtk_widget_set_size_request (yasmine_update_comboBox_ets, 186, 27);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_update_comboBox_ets), _("1234"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_update_comboBox_ets), _("1235"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (yasmine_update_comboBox_ets), _("1236"));
 
-  yasmine_update_label_qt = gtk_label_new (_("Qunatit\303\251  du sang (mL) :"));
-  gtk_widget_show (yasmine_update_label_qt);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_qt, 24, 592);
-  gtk_widget_set_size_request (yasmine_update_label_qt, 184, 33);
-
-  yasmine_update_entry_spinbutton_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  yasmine_update_entry_spinbutton_adj = gtk_adjustment_new (1, 0, 500, 1, 10, 10);
   yasmine_update_entry_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (yasmine_update_entry_spinbutton_adj), 1, 0);
   gtk_widget_show (yasmine_update_entry_spinbutton);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_entry_spinbutton, 232, 600);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_entry_spinbutton, 232, 384);
   gtk_widget_set_size_request (yasmine_update_entry_spinbutton, 60, 27);
+
+  yasmine_update_label_ETS = gtk_label_new (_("Etablissement :"));
+  gtk_widget_show (yasmine_update_label_ETS);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_ETS, 64, 304);
+  gtk_widget_set_size_request (yasmine_update_label_ETS, 120, 25);
 
   yasmine_update_button = gtk_button_new ();
   gtk_widget_show (yasmine_update_button);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_button, 264, 672);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_button, 144, 560);
   gtk_widget_set_size_request (yasmine_update_button, 280, 37);
 
   alignment10 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -1078,6 +1026,49 @@ create_yasmine_update_window (void)
   gtk_widget_show (label61);
   gtk_box_pack_start (GTK_BOX (hbox10), label61, FALSE, FALSE, 0);
 
+  yasmine_update_jour_spinBtn_adj = gtk_adjustment_new (1, 0, 31, 1, 10, 10);
+  yasmine_update_jour_spinBtn = gtk_spin_button_new (GTK_ADJUSTMENT (yasmine_update_jour_spinBtn_adj), 1, 0);
+  gtk_widget_show (yasmine_update_jour_spinBtn);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_jour_spinBtn, 168, 464);
+  gtk_widget_set_size_request (yasmine_update_jour_spinBtn, 60, 27);
+
+  yasmine_update_mois_spinBtn_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  yasmine_update_mois_spinBtn = gtk_spin_button_new (GTK_ADJUSTMENT (yasmine_update_mois_spinBtn_adj), 1, 0);
+  gtk_widget_show (yasmine_update_mois_spinBtn);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_mois_spinBtn, 256, 464);
+  gtk_widget_set_size_request (yasmine_update_mois_spinBtn, 60, 27);
+
+  yasmine_update_annee_spinBtn_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  yasmine_update_annee_spinBtn = gtk_spin_button_new (GTK_ADJUSTMENT (yasmine_update_annee_spinBtn_adj), 1, 0);
+  gtk_widget_show (yasmine_update_annee_spinBtn);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_annee_spinBtn, 336, 464);
+  gtk_widget_set_size_request (yasmine_update_annee_spinBtn, 60, 27);
+
+  yasmine_update_label_qt = gtk_label_new (_("Qunatit\303\251  du sang (mL) :"));
+  gtk_widget_show (yasmine_update_label_qt);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_qt, 32, 376);
+  gtk_widget_set_size_request (yasmine_update_label_qt, 184, 33);
+
+  yasmine_update_label_date = gtk_label_new (_("date du don :"));
+  gtk_widget_show (yasmine_update_label_date);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_date, 56, 464);
+  gtk_widget_set_size_request (yasmine_update_label_date, 104, 25);
+
+  yasmine_update_label_jour = gtk_label_new (_("jour "));
+  gtk_widget_show (yasmine_update_label_jour);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_jour, 168, 440);
+  gtk_widget_set_size_request (yasmine_update_label_jour, 49, 17);
+
+  yasmine_update_label_mois = gtk_label_new (_("mois"));
+  gtk_widget_show (yasmine_update_label_mois);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_mois, 256, 440);
+  gtk_widget_set_size_request (yasmine_update_label_mois, 49, 17);
+
+  yasmine_update_label_annee = gtk_label_new (_("ann\303\251e"));
+  gtk_widget_show (yasmine_update_label_annee);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_fixed1), yasmine_update_label_annee, 344, 440);
+  gtk_widget_set_size_request (yasmine_update_label_annee, 49, 17);
+
   g_signal_connect ((gpointer) yasmine_update_button, "clicked",
                     G_CALLBACK (on_yasmine_update_button_clicked),
                     NULL);
@@ -1090,22 +1081,26 @@ create_yasmine_update_window (void)
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_entryNom, "yasmine_update_entryNom");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_container1, "yasmine_update_container1");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_comboBox_typeSang, "yasmine_update_comboBox_typeSang");
-  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_container2, "yasmine_update_container2");
-  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_calendar1, "yasmine_update_calendar1");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_id, "yasmine_update_label_id");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_Nom, "yasmine_update_label_Nom");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_typeSang, "yasmine_update_label_typeSang");
-  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_date, "yasmine_update_label_date");
-  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_date, "yasmine_update_label_date");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_container3, "yasmine_update_container3");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_comboBox_ets, "yasmine_update_comboBox_ets");
-  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_qt, "yasmine_update_label_qt");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_entry_spinbutton, "yasmine_update_entry_spinbutton");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_ETS, "yasmine_update_label_ETS");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_button, "yasmine_update_button");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, alignment10, "alignment10");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, hbox10, "hbox10");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, image10, "image10");
   GLADE_HOOKUP_OBJECT (yasmine_update_window, label61, "label61");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_jour_spinBtn, "yasmine_update_jour_spinBtn");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_mois_spinBtn, "yasmine_update_mois_spinBtn");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_annee_spinBtn, "yasmine_update_annee_spinBtn");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_qt, "yasmine_update_label_qt");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_date, "yasmine_update_label_date");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_jour, "yasmine_update_label_jour");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_mois, "yasmine_update_label_mois");
+  GLADE_HOOKUP_OBJECT (yasmine_update_window, yasmine_update_label_annee, "yasmine_update_label_annee");
 
   return yasmine_update_window;
 }
@@ -1194,7 +1189,6 @@ create_yasmine_delete_confirm_window (void)
   GtkWidget *yasmine_delete_confirm_fixed1;
   GtkWidget *yasmine_delete_label_confirm;
   GtkWidget *yasmine_delete_checkbutton_non;
-  GtkWidget *yasmine_delete_checkbutton_non;
 
   yasmine_delete_confirm_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (yasmine_delete_confirm_window), _("window5"));
@@ -1240,9 +1234,8 @@ create_yasmine_update_confirm_window (void)
 {
   GtkWidget *yasmine_update_confirm_window;
   GtkWidget *yasmine_update_confirm_fixed1;
+  GtkWidget *yasmine_update_confirm_checkbtn_oui;
   GtkWidget *yasmine_update_label_confirm;
-  GtkWidget *yasmine_update_confirm_checkbtn_oui;
-  GtkWidget *yasmine_update_confirm_checkbtn_oui;
 
   yasmine_update_confirm_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (yasmine_update_confirm_window), _("window1"));
@@ -1251,15 +1244,15 @@ create_yasmine_update_confirm_window (void)
   gtk_widget_show (yasmine_update_confirm_fixed1);
   gtk_container_add (GTK_CONTAINER (yasmine_update_confirm_window), yasmine_update_confirm_fixed1);
 
-  yasmine_update_label_confirm = gtk_label_new (_("voulez vous vraiment modifier ce don ?"));
-  gtk_widget_show (yasmine_update_label_confirm);
-  gtk_fixed_put (GTK_FIXED (yasmine_update_confirm_fixed1), yasmine_update_label_confirm, 112, 112);
-  gtk_widget_set_size_request (yasmine_update_label_confirm, 336, 57);
-
   yasmine_update_confirm_checkbtn_oui = gtk_check_button_new_with_mnemonic (_("non"));
   gtk_widget_show (yasmine_update_confirm_checkbtn_oui);
   gtk_fixed_put (GTK_FIXED (yasmine_update_confirm_fixed1), yasmine_update_confirm_checkbtn_oui, 352, 224);
   gtk_widget_set_size_request (yasmine_update_confirm_checkbtn_oui, 118, 24);
+
+  yasmine_update_label_confirm = gtk_label_new (_("voulez vous vraiment modifier ce don ?"));
+  gtk_widget_show (yasmine_update_label_confirm);
+  gtk_fixed_put (GTK_FIXED (yasmine_update_confirm_fixed1), yasmine_update_label_confirm, 112, 136);
+  gtk_widget_set_size_request (yasmine_update_label_confirm, 336, 57);
 
   yasmine_update_confirm_checkbtn_oui = gtk_check_button_new_with_mnemonic (_("oui"));
   gtk_widget_show (yasmine_update_confirm_checkbtn_oui);
@@ -1276,10 +1269,9 @@ create_yasmine_update_confirm_window (void)
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (yasmine_update_confirm_window, yasmine_update_confirm_window, "yasmine_update_confirm_window");
   GLADE_HOOKUP_OBJECT (yasmine_update_confirm_window, yasmine_update_confirm_fixed1, "yasmine_update_confirm_fixed1");
+  GLADE_HOOKUP_OBJECT (yasmine_update_confirm_window, yasmine_update_confirm_checkbtn_oui, "yasmine_update_confirm_checkbtn_oui");
   GLADE_HOOKUP_OBJECT (yasmine_update_confirm_window, yasmine_update_label_confirm, "yasmine_update_label_confirm");
   GLADE_HOOKUP_OBJECT (yasmine_update_confirm_window, yasmine_update_confirm_checkbtn_oui, "yasmine_update_confirm_checkbtn_oui");
-  GLADE_HOOKUP_OBJECT (yasmine_update_confirm_window, yasmine_update_confirm_checkbtn_oui, "yasmine_update_confirm_checkbtn_oui");
-
-  return yasmine_update_confirm_window;
+return yasmine_update_confirm_window;
 }
 

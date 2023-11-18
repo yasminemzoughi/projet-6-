@@ -16,6 +16,9 @@ typedef struct {
 } don;
 void ajouter(don d);
 void afficher_don(GtkTreeView *liste);
-int quantite_type(char nomFichier[], char type_sang[]);
-void sang_rare(char *file, char sangRare[]);
+void supprimer_don( int id_to_delete);
 
+
+/*int quantite_type(char nomFichier[], char type_sang[]);
+void sang_rare(char *file, char sangRare[]);
+*/
